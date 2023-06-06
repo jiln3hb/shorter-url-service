@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "url")
 public class UrlEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "url_id_gen", sequenceName = "url_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_id_gen")
     private Long id;
     private String longUrl;
     private String shortUrl;
@@ -16,6 +17,10 @@ public class UrlEntity {
     public UrlEntity(String longUrl, String shortUrl) {
         this.longUrl = longUrl;
         this.shortUrl = shortUrl;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getLongUrl() {

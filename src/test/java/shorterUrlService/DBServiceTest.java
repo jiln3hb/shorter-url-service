@@ -29,9 +29,9 @@ public class DBServiceTest {
 
     @Test
     public void testListAll() {
-        UrlEntity entity1 = new UrlEntity("github.com", "a1b2c3");
-        UrlEntity entity2 = new UrlEntity("vk.com", "a2b3c4");
-        UrlEntity entity3 = new UrlEntity("google.com", "a3b4c5");
+        UrlEntity entity1 = new UrlEntity("github.com", "a1b2c");
+        UrlEntity entity2 = new UrlEntity("vk.com", "a2b3c");
+        UrlEntity entity3 = new UrlEntity("google.com", "a3b4c");
 
         List<UrlEntity> entitiesList = List.of(entity1, entity2, entity3);
 
@@ -42,9 +42,9 @@ public class DBServiceTest {
 
     @Test
     public void testDeleteAll() {
-        UrlEntity entity1 = new UrlEntity("github.com", "a1b2c3");
-        UrlEntity entity2 = new UrlEntity("vk.com", "a2b3c4");
-        UrlEntity entity3 = new UrlEntity("google.com", "a3b4c5");
+        UrlEntity entity1 = new UrlEntity("github.com", "a1b2c");
+        UrlEntity entity2 = new UrlEntity("vk.com", "a2b3c");
+        UrlEntity entity3 = new UrlEntity("google.com", "a3b4c");
         List<UrlEntity> entitiesList = List.of(entity1, entity2, entity3);
         urlRepo.saveAll(entitiesList);
 
@@ -55,7 +55,7 @@ public class DBServiceTest {
 
     @Test
     public void testSave() {
-        UrlEntity exceptedEntity = new UrlEntity("github.com", "a1b2c3");
+        UrlEntity exceptedEntity = new UrlEntity("github.com", "a1b2c");
         dbService.save(exceptedEntity);
 
         List<UrlEntity> list = urlRepo.findAll();
@@ -74,14 +74,12 @@ public class DBServiceTest {
 
     @Test
     public void testFindByshortUrl() {
-        UrlEntity exceptedEntity = new UrlEntity("vk.com", "a1b2c3");
+        UrlEntity exceptedEntity = new UrlEntity("vk.com", "a1b2c");
         urlRepo.save(exceptedEntity);
-        System.out.println("exceptedEntity: " + exceptedEntity.getLongUrl() + ", " + exceptedEntity.getShortUrl());
 
-        Optional<UrlEntity> actualEntity = dbService.findByshortUrl("a1b2c3");
+        Optional<UrlEntity> actualEntity = dbService.findByshortUrl("a1b2c");
 
         assertTrue(actualEntity.isPresent());
-        System.out.println("actualEntity: " + actualEntity.get().getLongUrl() + ", " + actualEntity.get().getShortUrl());
         assertEquals(exceptedEntity, actualEntity.get());
     }
 }

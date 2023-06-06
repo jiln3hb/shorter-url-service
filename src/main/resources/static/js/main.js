@@ -12,6 +12,10 @@ async function tap() {
         let responseText = await response.text();
         out.textContent = '/' + responseText;
     } else {
+        if(response.status = 400) {
         out.textContent = 'Url is not valid';
+        } else {
+        out.textContent = 'undefined error';
+        }
     }
 }
