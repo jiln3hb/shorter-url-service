@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import shorterUrlService.entity.UrlEntity;
 import shorterUrlService.repository.UrlRepo;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,14 +15,6 @@ public class DBService {
     public DBService(UrlRepo urlRepo) {
         this.urlRepo = urlRepo;
     }
-
-    public List<UrlEntity> listAll() {
-        return urlRepo.findAll();
-    } //метод возвращает информацию о всех сущностях из бд в виде списка
-
-    public void deleteAll() {
-        urlRepo.deleteAll();
-    } //удаляет все данные из бд
 
     public void save(UrlEntity urlEntity) {
         urlRepo.save(urlEntity);
